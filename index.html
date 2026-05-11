@@ -268,107 +268,118 @@
   </footer>
 
   <script>
-    // ---------- ゴルフ場データ (12コース) ----------
+    // ---------- ゴルフ場データ (人気順1～12) 住所とアクセスを正確に記載 ----------
     const courses = [
       { id:1, rank:1, nameJa:"ザ・サザンリンクスゴルフクラブ", nameEn:"The Southern Links Golf Club",
         descJa:"太平洋の断崖に位置し、海越えの絶景と戦略的なコースレイアウト。プロも絶賛する沖縄最高峰のリンクス。",
         descEn:"Located on Pacific Ocean cliffs, ocean-view carries and strategic layout. The pinnacle of Okinawa links golf.",
-        accessJa:"沖縄自動車道 石川ICより約30分。那覇空港から車で約70分。",
-        accessEn:"About 30 min from Ishikawa IC (Okinawa Expressway). 70 min from Naha Airport by car.",
-        nearbyJa:"観光：琉球村、真栄田岬（青の洞窟）  宿泊：ハレクラニ沖縄、ザ・ブセナテラス",
-        nearbyEn:"Sightseeing: Ryukyu Mura, Cape Maeda. Hotels: Halekulani Okinawa, The Busena Terrace.",
-        officialUrl:"https://www.southern-links.com/", imagePlaceholder:"https://picsum.photos/id/104/800/500", mapLat:26.395, mapLng:127.745 },
+        address:"〒901-0513 沖縄県島尻郡八重瀬町字玻名城697",
+        accessJa:"那覇空港から車で約30分（国道329号線・507号線経由）。沖縄自動車道・南風原北ICまたは豊見城ICから約20分。",
+        accessEn:"About 30 min from Naha Airport via Route 329/507. About 20 min from Naha/Haebaru IC via Okinawa Expressway.",
+        nearbyJa:"観光：ひめゆりの塔、平和祈念公園、琉球ガラス村／宿泊：ザ・サザンリンクスリゾート、ホテルグランビュー",
+        nearbyEn:"Tourism: Himeyuri Tower, Peace Memorial Park, Ryukyu Glass Village / Hotel: The Southern Links Resort, Hotel Granview",
+        officialUrl:"https://www.southern-links.com/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop", mapLat:26.127, mapLng:127.695 },
       { id:2, rank:2, nameJa:"PGMゴルフリゾート沖縄", nameEn:"PGM Golf Resort Okinawa",
         descJa:"GRAND PGM最高峰リゾート。至高のサービスと戦略性あふれるコース設計で、トーナメント実績多数。",
         descEn:"The finest GRAND PGM resort. Supreme service & challenging design host many tournaments.",
-        accessJa:"石川ICより約15分。那覇空港から約60分。",
-        accessEn:"15 min from Ishikawa IC. 60 min from Naha Airport.",
-        nearbyJa:"観光：恩納村海浜公園、万座毛  宿泊：ANAインターコンチネンタル万座ビーチ",
-        nearbyEn:"Sightseeing: Onna Seaside Park, Cape Manzamo. Hotel: ANA InterContinental Manza Beach.",
-        officialUrl:"https://www.pacificgolf.co.jp/pgm-okinawa/", imagePlaceholder:"https://picsum.photos/id/15/800/500" },
+        address:"〒904-0413 沖縄県国頭郡恩納村字冨着1043",
+        accessJa:"沖縄自動車道・石川ICから約7km（約10分）。那覇空港から車で約60分。",
+        accessEn:"About 7 km (10 min) from Ishikawa IC via Okinawa Expressway. About 60 min from Naha Airport.",
+        nearbyJa:"観光：万座毛、琉球村、恩納海浜公園／宿泊：ANAインターコンチネンタル万座ビーチ、ハレクラニ沖縄",
+        nearbyEn:"Tourism: Cape Manzamo, Ryukyu Mura, Onna Seaside Park / Hotel: ANA InterContinental Manza Beach, Halekulani Okinawa",
+        officialUrl:"https://www.pacificgolf.co.jp/pgm-okinawa/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop" },
       { id:3, rank:3, nameJa:"かねひで喜瀬カントリークラブ", nameEn:"Kanehide Kise Country Club",
         descJa:"沖縄を代表する名門。プロトーナメント開催歴があり、伝統と挑戦を感じられる名設計。",
         descEn:"A prestigious course that has hosted pro tournaments. Traditional yet challenging layout.",
-        accessJa:"石川ICより約20分。那覇空港から約65分。",
-        accessEn:"20 min from Ishikawa IC. 65 min from Naha Airport.",
-        nearbyJa:"観光：ブセナ海中公園、万国津梁館  宿泊：ザ・リッツカールトン沖縄",
-        nearbyEn:"Sightseeing: Busena Marine Park, Bankoku Shinryokan. Hotel: Ritz-Carlton Okinawa.",
-        officialUrl:"https://www.kise-cc.com/", imagePlaceholder:"https://picsum.photos/id/96/800/500" },
+        address:"〒905-0026 沖縄県名護市字喜瀬1107-1",
+        accessJa:"沖縄自動車道・許田ICから約5km（約8分）。那覇空港から車で約75分。",
+        accessEn:"About 5 km (8 min) from Kyoda IC via Okinawa Expressway. About 75 min from Naha Airport.",
+        nearbyJa:"観光：ブセナ海中公園、万国津梁館、名護市民ビーチ／宿泊：ザ・リッツカールトン沖縄、ザ・ブセナテラス",
+        nearbyEn:"Tourism: Busena Marine Park, Bankoku Shinryokan, Nago Citizen Beach / Hotel: Ritz-Carlton Okinawa, The Busena Terrace",
+        officialUrl:"https://www.kise-cc.com/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop" },
       { id:4, rank:4, nameJa:"オーシャンキャッスルカントリークラブ", nameEn:"Ocean Castle Country Club",
         descJa:"東シナ海と太平洋を望む絶景。中城城跡に隣接し、スリルと風格が漂うコース。",
         descEn:"Panoramic views of East China Sea & Pacific. Adjacent to Nakagusuku Castle ruins.",
-        accessJa:"石川ICより約25分。那覇空港から50分。",
-        accessEn:"25 min from Ishikawa IC. 50 min from Naha Airport.",
-        nearbyJa:"観光：中城城跡、勝連城跡  宿泊：ホテル日航那覇",
-        nearbyEn:"Sightseeing: Nakagusuku Castle, Katsuren Castle. Hotel: Hotel Nikko Naha.",
-        officialUrl:"https://www.oceancastle.co.jp/", imagePlaceholder:"https://picsum.photos/id/128/800/500" },
+        address:"〒901-2421 沖縄県中頭郡中城村字登又60",
+        accessJa:"沖縄自動車道・北中城ICから約3分。那覇空港から車で約40分。",
+        accessEn:"About 3 min from Kita-Nakagusuku IC via Okinawa Expressway. About 40 min from Naha Airport.",
+        nearbyJa:"観光：中城城跡、勝連城跡、泡盛醸造所／宿泊：ホテル日航那覇、ロワジールホテル",
+        nearbyEn:"Tourism: Nakagusuku Castle, Katsuren Castle, Awamori Distillery / Hotel: Hotel Nikko Naha, Loisir Hotel",
+        officialUrl:"https://www.oceancastle.co.jp/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop" },
       { id:5, rank:5, nameJa:"ベルビーチゴルフクラブ", nameEn:"Bel Beach Golf Club",
         descJa:"全ホールオーシャンビュー。フラットで初心者にも優しいが、上級者も楽しめるバランス設計。",
         descEn:"Ocean view on every hole. Flat & friendly for beginners yet enjoyable for pros.",
-        accessJa:"石川ICより約10分。那覇空港から約55分。",
-        accessEn:"10 min from Ishikawa IC. 55 min from Naha Airport.",
-        nearbyJa:"観光：残波岬、体験王国むら咲むら  宿泊：残波岬ロイヤルホテル",
-        nearbyEn:"Sightseeing: Cape Zanpa, Murasakimura. Hotel: Zanpa Royal Hotel.",
-        officialUrl:"https://www.belbeach.co.jp/", imagePlaceholder:"https://picsum.photos/id/42/800/500" },
+        address:"〒905-0225 沖縄県国頭郡本部町字崎本部5151",
+        accessJa:"沖縄自動車道・許田ICから約20km（約35分）。那覇空港から車で約100分。",
+        accessEn:"About 20 km (35 min) from Kyoda IC via Okinawa Expressway. About 100 min from Naha Airport.",
+        nearbyJa:"観光：沖縄美ら海水族館、備瀬のフクギ並木、古宇利島／宿泊：ホテルマハイナウェルネスリゾート",
+        nearbyEn:"Tourism: Churaumi Aquarium, Bise Fukugi Tree Row, Kouri Island / Hotel: Hotel Mahaina Wellness Resort",
+        officialUrl:"https://www.belbeach.co.jp/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop" },
       { id:6, rank:6, nameJa:"琉球ゴルフ倶楽部", nameEn:"Ryukyu Golf Club",
         descJa:"国内女子ツアー『ダイキンオーキッドレディス』の舞台。戦略性と美しいフェアウェイ。",
         descEn:"Stage of JLPGA Daikin Orchid Ladies. Strategic and immaculate fairways.",
-        accessJa:"石川ICより約18分。那覇空港から60分。",
-        accessEn:"18 min from Ishikawa IC. 60 min from Naha Airport.",
-        nearbyJa:"観光：ビオスの丘、東南植物楽園  宿泊：ホテルモントレ沖縄",
-        nearbyEn:"Sightseeing: Bios Hill, Southeast Botanical Gardens. Hotel: Hotel Monterey Okinawa.",
-        officialUrl:"https://www.ryukyu-gc.com/", imagePlaceholder:"https://picsum.photos/id/31/800/500" },
+        address:"〒901-0608 沖縄県南城市玉城親慶原1",
+        accessJa:"那覇空港自動車道・南風原北ICから約7km（約15分）。那覇空港から車で約35分。",
+        accessEn:"About 7 km (15 min) from Haebaru IC via Naha Airport Expressway. About 35 min from Naha Airport.",
+        nearbyJa:"観光：斎場御嶽、知念岬公園、あざまサンサンビーチ／宿泊：ホテルサザンビーチ、ゆいなー民宿",
+        nearbyEn:"Tourism: Sefa Utaki, Chinen Misaki Park, Azama Sunsun Beach / Hotel: Hotel Southern Beach, Yuina",
+        officialUrl:"https://www.ryukyu-gc.com/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop" },
       { id:7, rank:7, nameJa:"美らオーチャードゴルフ倶楽部", nameEn:"Chura Orchard Golf Club",
         descJa:"元男子トーナメント開催コース。南国の香り漂う丘陵コースで戦略性抜群。",
         descEn:"Former men's tournament course. Hilly layout with subtropical scent and strategy.",
-        accessJa:"石川ICより約12分。那覇空港から50分。",
-        accessEn:"12 min from Ishikawa IC. 50 min from Naha Airport.",
-        nearbyJa:"観光：名護市民ビーチ、オリオンハッピーパーク  宿泊：カヌチャリゾート",
-        nearbyEn:"Sightseeing: Nago Citizen Beach, Orion Happy Park. Hotel: Kanucha Resort.",
-        officialUrl:"https://www.churaorchard.com/", imagePlaceholder:"https://picsum.photos/id/26/800/500" },
+        address:"〒904-0402 沖縄県国頭郡恩納村字安富祖1577",
+        accessJa:"沖縄自動車道・屋嘉ICから約10km（約18分）。那覇空港から車で約65分。",
+        accessEn:"About 10 km (18 min) from Yaka IC via Okinawa Expressway. About 65 min from Naha Airport.",
+        nearbyJa:"観光：琉球村、万座毛、恩納海浜公園／宿泊：カヌチャリゾート、ルネッサンスリゾート",
+        nearbyEn:"Tourism: Ryukyu Mura, Cape Manzamo, Onna Seaside Park / Hotel: Kanucha Resort, Renaissance Resort",
+        officialUrl:"https://www.churaorchard.com/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop" },
       { id:8, rank:8, nameJa:"パームヒルズゴルフリゾート", nameEn:"Palm Hills Golf Resort",
         descJa:"標高130mの丘陵からの大パノラマ。リゾート感と本格派コースが融合。",
         descEn:"Great panorama from 130m hill. Resort atmosphere meets serious golf.",
-        accessJa:"石川ICより約5分。那覇空港から45分。",
-        accessEn:"5 min from Ishikawa IC. 45 min from Naha Airport.",
-        nearbyJa:"観光：沖縄こどもの国、嘉手納基地展望台  宿泊：ロワジールホテル沖縄",
-        nearbyEn:"Sightseeing: Okinawa Zoo & Children's Land, Kadena Base. Hotel: Loisir Hotel Okinawa.",
-        officialUrl:"https://www.palmhills.co.jp/", imagePlaceholder:"https://picsum.photos/id/29/800/500" },
+        address:"〒901-0323 沖縄県糸満市字新垣762",
+        accessJa:"那覇空港から車で約25分（県道7号線経由）。那覇市内から約30分。沖縄自動車道・豊見城ICから約20分。",
+        accessEn:"About 25 min from Naha Airport via Route 7. About 30 min from downtown Naha. About 20 min from Tomigusuku IC via Okinawa Expressway.",
+        nearbyJa:"観光：ひめゆりの塔、平和祈念公園、琉球ガラス村／宿泊：ホテルグランビュー、沖縄かりゆしアーバン",
+        nearbyEn:"Tourism: Himeyuri Tower, Peace Memorial Park, Ryukyu Glass Village / Hotel: Hotel Granview, Okinawa Kariyushi Urban",
+        officialUrl:"https://www.palmhills.co.jp/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop" },
       { id:9, rank:9, nameJa:"那覇ゴルフ倶楽部", nameEn:"Naha Golf Club",
         descJa:"日本オープン開催の格式ある名門。那覇市近郊でアクセス良好。",
         descEn:"Prestigious club that hosted Japan Open. Good access from Naha city.",
-        accessJa:"石川ICより約30分。那覇空港から25分。",
-        accessEn:"30 min from Ishikawa IC. 25 min from Naha Airport.",
-        nearbyJa:"観光：首里城、国際通り  宿泊：ダブルツリーbyヒルトン那覇",
-        nearbyEn:"Sightseeing: Shuri Castle, Kokusai Dori. Hotel: DoubleTree by Hilton Naha.",
-        officialUrl:"https://www.nahagolfclub.com/", imagePlaceholder:"https://picsum.photos/id/69/800/500" },
+        address:"〒901-0402 沖縄県島尻郡八重瀬町字富盛2270",
+        accessJa:"那覇空港から車で約25分（国道331号線経由）。那覇市内から約25分。",
+        accessEn:"About 25 min from Naha Airport via Route 331. About 25 min from downtown Naha.",
+        nearbyJa:"観光：ひめゆりの塔、平和祈念公園、豊崎美らSUNビーチ／宿泊：ダブルツリーbyヒルトン那覇",
+        nearbyEn:"Tourism: Himeyuri Tower, Peace Memorial Park, Toyosaki Chura Sun Beach / Hotel: DoubleTree by Hilton Naha",
+        officialUrl:"https://www.nahagolfclub.com/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop" },
       { id:10, rank:10, nameJa:"沖縄カントリークラブ", nameEn:"Okinawa Country Club",
         descJa:"フラットで戦略性もあり、初心者から熟練者まで楽しめる人気コース。",
         descEn:"Flat and strategic. Popular among all skill levels.",
-        accessJa:"石川ICより約15分。那覇空港から50分。",
-        accessEn:"15 min from Ishikawa IC. 50 min from Naha Airport.",
-        nearbyJa:"観光：普天間宮、コザゲート通り  宿泊：ホテルサン沖縄",
-        nearbyEn:"Sightseeing: Futenma Shrine, Koza Gate St. Hotel: Hotel Sun Okinawa.",
-        officialUrl:"https://www.okinawacc.com/", imagePlaceholder:"https://picsum.photos/id/48/800/500" },
+        address:"〒903-0114 沖縄県中頭郡西原町桃原109",
+        accessJa:"那覇空港から車で約30分。沖縄自動車道・那覇ICから約10分（5km）。",
+        accessEn:"About 30 min from Naha Airport. About 10 min (5 km) from Naha IC via Okinawa Expressway.",
+        nearbyJa:"観光：首里城、国際通り、沖縄県立博物館・美術館／宿泊：ホテルサン沖縄、ロワジールホテル",
+        nearbyEn:"Tourism: Shuri Castle, Kokusai Dori, Okinawa Prefectural Museum / Hotel: Hotel Sun Okinawa, Loisir Hotel",
+        officialUrl:"https://www.okinawacc.com/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop" },
       { id:11, rank:11, nameJa:"宜野座カントリークラブ", nameEn:"Ginoza Country Club",
         descJa:"近年予約ランキング急上昇。新しく設備が整い、コースメンテナンス良好。",
         descEn:"Fast-rising in booking rankings. New facilities and well-maintained.",
-        accessJa:"石川ICより約8分。那覇空港から55分。",
-        accessEn:"8 min from Ishikawa IC. 55 min from Naha Airport.",
-        nearbyJa:"観光：宜野座博物館、漢那漁港  宿泊：グランディオーシャンリゾート",
-        nearbyEn:"Sightseeing: Ginoza Museum, Hanna Fishing Port. Hotel: Grand Ocean Resort.",
-        officialUrl:"https://ginoza-cc.com/", imagePlaceholder:"https://picsum.photos/id/91/800/500" },
+        address:"〒904-1301 沖縄県国頭郡宜野座村字松田2824-264",
+        accessJa:"沖縄自動車道・宜野座ICから約5km（約10分）。那覇空港から車で約60分。",
+        accessEn:"About 5 km (10 min) from Ginoza IC via Okinawa Expressway. About 60 min from Naha Airport.",
+        nearbyJa:"観光：宜野座博物館、漢那漁港、松田川／宿泊：グランディオーシャンリゾート",
+        nearbyEn:"Tourism: Ginoza Museum, Hanna Fishing Port, Matsuda River / Hotel: Grand Ocean Resort",
+        officialUrl:"https://ginoza-cc.com/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop" },
       { id:12, rank:12, nameJa:"シギラベイカントリークラブ", nameEn:"Shigira Bay Country Club",
         descJa:"宮古島の透き通る海を望むリゾートコース。全ホール海景の贅沢なプレー体験。",
         descEn:"Resort course overlooking crystal-clear sea of Miyakojima. Ocean views for all holes.",
-        accessJa:"宮古空港から車で約15分。石川ICからは飛行機での移動。",
-        accessEn:"15 min from Miyako Airport. Access by plane from Okinawa main island.",
-        nearbyJa:"観光：与那覇前浜ビーチ、伊良部大橋  宿泊：シギラベイサイドスイート",
-        nearbyEn:"Sightseeing: Yonaha Maehama Beach, Irabu Bridge. Hotel: Shigira Bayside Suite.",
-        officialUrl:"https://www.shigira.com/golf/", imagePlaceholder:"https://picsum.photos/id/106/800/500" }
+        address:"〒906-0202 沖縄県宮古島市上野字新里1264",
+        accessJa:"宮古空港からタクシーで約15分。※本島からのアクセスは那覇空港から宮古空港へ航空機利用（約45分）。",
+        accessEn:"About 15 min by taxi from Miyako Airport. *From mainland: about 45 min flight from Naha Airport to Miyako Airport.",
+        nearbyJa:"観光：与那覇前浜ビーチ、伊良部大橋、来間大橋／宿泊：シギラベイサイドスイート、ホテルシギラミラージュ",
+        nearbyEn:"Tourism: Yonaha Maehama Beach, Irabu Bridge, Kurima Bridge / Hotel: Shigira Bayside Suite, Hotel Shigira Mirage",
+        officialUrl:"https://www.shigira.com/golf/", imagePlaceholder:"https://images.unsplash.com/photo-1544467766-0e2f7d1c28f6?w=800&h=500&fit=crop" }
     ];
 
-    // 多言語辞書
     const i18n = {
       ja: {
         title: "🏌️ 沖縄ゴルフリゾートガイド",
@@ -378,7 +389,7 @@
         visitSite: "公式サイトへ",
         detailBack: "← 一覧に戻る",
         officialHome: "公式ホームページを見る",
-        mapLabel: "📍 周辺エリア (石川ICを中心としたマップ)",
+        mapLabel: "📍 沖縄本島マップ (石川インター中心)",
         features: "アクセス・周辺情報"
       },
       en: {
@@ -389,7 +400,7 @@
         visitSite: "Visit Site",
         detailBack: "← Back to List",
         officialHome: "Official Website",
-        mapLabel: "📍 Area Map (Centered on Ishikawa IC)",
+        mapLabel: "📍 Okinawa Main Island Map (Centered on Ishikawa IC)",
         features: "Access & Nearby Info"
       }
     };
@@ -400,7 +411,6 @@
     let currentCourse = null;
     const mainDiv = document.getElementById('mainContent');
 
-    // テーマ設定
     function setTheme(theme) {
       document.body.classList.remove('dark', 'light');
       document.body.classList.add(theme);
@@ -410,7 +420,6 @@
       localStorage.setItem('golf_theme', theme);
     }
 
-    // 言語設定
     function setLanguage(lang) {
       currentLang = lang;
       document.getElementById('page-title').innerText = i18n[lang].title;
@@ -422,7 +431,6 @@
       renderCurrentView();
     }
 
-    // スポンサーブロック
     function renderSponsorBlock(position = 'top') {
       return `
         <div class="sponsor">
@@ -433,7 +441,6 @@
       `;
     }
 
-    // メインページの下部マップ描画
     function renderBottomMap() {
       const container = document.getElementById('bottomMapContainer');
       if (!container) return;
@@ -441,26 +448,27 @@
       container.innerHTML = `
         <div class="map-container bottom-map">
           <iframe width="100%" height="100%" frameborder="0" style="border:0" 
-            src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=石川IC+沖縄&zoom=12&language=${lang}"
+            src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=石川IC+沖縄&zoom=10&language=${lang}"
             allowfullscreen loading="lazy"></iframe>
         </div>
       `;
     }
 
-    // 一覧表示
     function renderList() {
       let html = renderSponsorBlock('top');
       html += `<div class="golf-list">`;
       courses.forEach(course => {
         const name = currentLang === 'ja' ? course.nameJa : course.nameEn;
-        const featureShort = currentLang === 'ja' ? (course.descJa.slice(0, 70) + '...') : (course.descEn.slice(0, 70) + '...');
+        const addr = course.address;
+        let addrShort = addr.split(' ').slice(1,3).join(' ');
+        if (addrShort.length > 30) addrShort = addrShort.substring(0, 30) + '...';
         html += `
           <div class="card" data-id="${course.id}">
             <div class="card-header">
               <span class="rank">#${course.rank}</span>
               <span class="course-name">${escapeHtml(name)}</span>
             </div>
-            <div class="feature">${escapeHtml(featureShort)}</div>
+            <div class="feature">📍 ${escapeHtml(addrShort)}</div>
             <div class="badge">🏝️ ${currentLang === 'ja' ? 'アクセス良好' : 'Good access'}</div>
           </div>
         `;
@@ -469,8 +477,7 @@
       html += renderSponsorBlock('bottom');
       html += `<div id="bottomMapContainer" class="bottom-map"></div>`;
       mainDiv.innerHTML = html;
-      
-      // カードクリック
+
       document.querySelectorAll('.card').forEach(card => {
         card.addEventListener('click', (e) => {
           const id = parseInt(card.getAttribute('data-id'));
@@ -481,17 +488,15 @@
       renderBottomMap();
     }
 
-    // XSS 対策
     function escapeHtml(str) {
-      return str.replace(/[&<>]/g, function(m) {
+      return str ? str.replace(/[&<>]/g, function(m) {
         if (m === '&') return '&amp;';
         if (m === '<') return '&lt;';
         if (m === '>') return '&gt;';
         return m;
-      });
+      }) : '';
     }
 
-    // 詳細表示
     function showDetail(course) {
       showingDetail = true;
       currentCourse = course;
@@ -499,38 +504,38 @@
       const name = lang === 'ja' ? course.nameJa : course.nameEn;
       const desc = lang === 'ja' ? course.descJa : course.descEn;
       const access = lang === 'ja' ? course.accessJa : course.accessEn;
+      const address = course.address;
       const nearby = lang === 'ja' ? course.nearbyJa : course.nearbyEn;
-      const hotelPart = lang === 'ja' ? (course.nearbyJa.split('宿泊：')[1] || 'リゾートホテル多数') : (course.nearbyEn.split('Hotels:')[1] || 'many resort hotels');
-      const sightPart = lang === 'ja' ? (course.nearbyJa.split('宿泊：')[0] || course.nearbyJa) : (course.nearbyEn.split('Hotels:')[0] || course.nearbyEn);
-      
+
       const html = `
         <div class="detail-view">
           <button id="backToListBtn" class="btn-secondary back-btn">${i18n[lang].detailBack}</button>
           <h2>${escapeHtml(name)}</h2>
           <img class="detail-image" src="${course.imagePlaceholder}" alt="${escapeHtml(name)}" loading="lazy" onerror="this.src='https://placehold.co/800x400/2c7a4d/white?text=Golf+Course'">
           <p><strong>📝 ${lang === 'ja' ? 'コース紹介' : 'Description'}</strong><br>${escapeHtml(desc)}</p>
+          <p><strong>📍 ${lang === 'ja' ? '所在地' : 'Address'}</strong><br>${escapeHtml(address)}</p>
           <div style="margin-top: 1rem;">
             <strong>🚗 ${lang === 'ja' ? 'アクセス' : 'Access'}</strong><br>${escapeHtml(access)}<br><br>
-            <strong>🏨 ${lang === 'ja' ? '周辺観光・宿泊' : 'Tourism & Hotels'}</strong><br>${escapeHtml(sightPart)}<br>${lang === 'ja' ? '宿泊' : 'Hotels'}: ${escapeHtml(hotelPart)}
+            <strong>🏨 ${lang === 'ja' ? '周辺観光・宿泊' : 'Tourism & Hotels'}</strong><br>${escapeHtml(nearby)}
           </div>
           <a href="${course.officialUrl}" target="_blank" rel="noopener noreferrer" class="official-link">${i18n[lang].officialHome} ↗</a>
           <div class="map-container" id="detailMap"></div>
         </div>
       `;
       mainDiv.innerHTML = html;
-      
+
       document.getElementById('backToListBtn').addEventListener('click', () => {
         showingDetail = false;
         renderList();
       });
-      
+
       setTimeout(() => {
         const mapDiv = document.getElementById('detailMap');
         if (mapDiv) {
           const lat = course.mapLat || 26.395;
           const lng = course.mapLng || 127.745;
           mapDiv.innerHTML = `<iframe width="100%" height="100%" frameborder="0" style="border:0" 
-            src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${lat},${lng}&zoom=13&language=${lang}"
+            src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${lat},${lng}&zoom=12&language=${lang}"
             allowfullscreen loading="lazy"></iframe>`;
         }
       }, 50);
@@ -544,27 +549,25 @@
       }
     }
 
-    // Service Worker 登録 (iOS対応)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js').then(reg => {
-          console.log('SW registered:', reg);
+          console.log('Service Worker registered:', reg);
         }).catch(err => {
           console.error('SW registration failed:', err);
         });
       });
     }
 
-    // 初期化
     function initApp() {
       const savedTheme = localStorage.getItem('golf_theme');
       if (savedTheme === 'light') setTheme('light');
       else setTheme('dark');
-      
+
       const savedLang = localStorage.getItem('golf_lang');
       if (savedLang === 'en') setLanguage('en');
       else setLanguage('ja');
-      
+
       document.getElementById('langBtn').addEventListener('click', () => {
         const newLang = currentLang === 'ja' ? 'en' : 'ja';
         setLanguage(newLang);
@@ -573,10 +576,10 @@
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         setTheme(newTheme);
       });
-      
+
       renderList();
     }
-    
+
     initApp();
   </script>
 </body>
