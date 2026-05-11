@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title id="page-title">沖縄ゴルフリゾートガイド</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a2a32" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+  <!-- iOS PWA 設定 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/icon-192.jpg">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, sans-serif;
+      line-height: 1.5;
+      background-color: #f5f7fa;
+      color: #1e2a3e;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    /* ダークモード (デフォルト) */
+    body.dark {
+      background-color: #0f1720;
+      color: #e2e8f0;
+    }
+    body.dark .card {
+      background-color: #1e2937;
+      border-color: #334155;
+    }
+    body.dark .btn-secondary {
+      background-color: #334155;
+      color: #f1f5f9;
+    }
+    body.dark .sponsor {
+      background-color: #1e2937;
+      border-color: #475569;
+    }
+    /* クリアモード（ライト） */
+    body.light {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    body.light .card {
+      background-color: #ffffff;
+      border-color: #cbd5e1;
+    }
+    body.light .btn-secondary {
+      background-color: #e2e8f0;
+      color: #1e293b;
+    }
+    body.light .sponsor {
+      background-color: #ffffff;
+      border-color: #cbd5e1;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    header, footer {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    body.dark header, body.dark footer {
+      background-color: rgba(15, 25, 35, 0.9);
+    }
+    header {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    footer {
+      border-top: 1px solid rgba(0,0,0,0.1);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+    button:active {
+      opacity: 0.7;
+    }
+    .btn-primary {
+      background-color: #2c7a4d;
+      color: white;
+    }
+    .btn-secondary {
+      background-color: #e2e8f0;
+      color: #1e293b;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.25rem;
+    }
+    .sub {
+      color: #5b6e8c;
+      margin-bottom: 1.5rem;
+    }
+    body.dark .sub {
+      color: #94a3b8;
+    }
+    .sponsor {
+      border: 1px solid;
+      border-radius: 2rem;
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .sponsor img {
+      max-height: 60px;
+      border-radius: 12px;
+    }
+    .sponsor a {
+      color: #2c7a4d;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .golf-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .card {
+      border: 1px solid;
+      border-radius: 1.5rem;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.2s;
+    }
+    .card:active {
+      transform: scale(0.99);
+    }
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .rank {
+      font-weight: bold;
+      background-color: #2c7a4d;
+      color: white;
+      padding: 0.2rem 0.7rem;
+      border-radius: 3rem;
+      font-size: 0.8rem;
+    }
+    .course-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .feature {
+      margin-top: 0.5rem;
+    }
+    .badge {
+      display: inline-block;
+      background-color: #cbd5e1;
+      color: #0f172a;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    body.dark .badge {
+      background-color: #334155;
+      color: #e2e8f0;
+    }
+    .detail-view {
+      margin: 1rem 0;
+    }
+    .detail-image {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+      border-radius: 1.5rem;
+      margin: 1rem 0;
+    }
+    .back-btn {
+      margin-bottom: 1rem;
+    }
+    .map-container {
+      margin: 2rem 0;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      height: 350px;
+    }
+    .bottom-map {
+      margin-top: 2rem;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .official-link {
+      display: inline-block;
+      margin: 1rem 0;
+      background-color: #2c7a4d;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+    }
+    .contact-email {
+      color: #2c7a4d;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    @media (max-width: 640px) {
+      .container {
+        padding: 1rem;
+      }
+      .course-name {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body class="dark">
+  <header>
+    <div class="container" style="padding: 0.5rem 0;">
+      <h1 data-i18n="title">🏌️ 沖縄ゴルフリゾートガイド</h1>
+      <div class="sub" data-i18n="subtitle">絶景コースとリゾートの調和</div>
+    </div>
+  </header>
+
+  <main class="container" id="app">
+    <div class="toolbar">
+      <button id="langBtn" class="btn-secondary">🇬🇧 English</button>
+      <button id="themeBtn" class="btn-secondary">☀️ ライトモード</button>
+    </div>
+    <div id="mainContent"></div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>Contact us<br><a href="mailto:mementomorikatsu@gmail.com" class="contact-email">mementomorikatsu@gmail.com</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- ゴルフ場データ (12コース) ----------
+    const courses = [
+      { id:1, rank:1, nameJa:"ザ・サザンリンクスゴルフクラブ", nameEn:"The Southern Links Golf Club",
+        descJa:"太平洋の断崖に位置し、海越えの絶景と戦略的なコースレイアウト。プロも絶賛する沖縄最高峰のリンクス。",
+        descEn:"Located on Pacific Ocean cliffs, ocean-view carries and strategic layout. The pinnacle of Okinawa links golf.",
+        accessJa:"沖縄自動車道 石川ICより約30分。那覇空港から車で約70分。",
+        accessEn:"About 30 min from Ishikawa IC (Okinawa Expressway). 70 min from Naha Airport by car.",
+        nearbyJa:"観光：琉球村、真栄田岬（青の洞窟）  宿泊：ハレクラニ沖縄、ザ・ブセナテラス",
+        nearbyEn:"Sightseeing: Ryukyu Mura, Cape Maeda. Hotels: Halekulani Okinawa, The Busena Terrace.",
+        officialUrl:"https://www.southern-links.com/", imagePlaceholder:"https://picsum.photos/id/104/800/500", mapLat:26.395, mapLng:127.745 },
+      { id:2, rank:2, nameJa:"PGMゴルフリゾート沖縄", nameEn:"PGM Golf Resort Okinawa",
+        descJa:"GRAND PGM最高峰リゾート。至高のサービスと戦略性あふれるコース設計で、トーナメント実績多数。",
+        descEn:"The finest GRAND PGM resort. Supreme service & challenging design host many tournaments.",
+        accessJa:"石川ICより約15分。那覇空港から約60分。",
+        accessEn:"15 min from Ishikawa IC. 60 min from Naha Airport.",
+        nearbyJa:"観光：恩納村海浜公園、万座毛  宿泊：ANAインターコンチネンタル万座ビーチ",
+        nearbyEn:"Sightseeing: Onna Seaside Park, Cape Manzamo. Hotel: ANA InterContinental Manza Beach.",
+        officialUrl:"https://www.pacificgolf.co.jp/pgm-okinawa/", imagePlaceholder:"https://picsum.photos/id/15/800/500" },
+      { id:3, rank:3, nameJa:"かねひで喜瀬カントリークラブ", nameEn:"Kanehide Kise Country Club",
+        descJa:"沖縄を代表する名門。プロトーナメント開催歴があり、伝統と挑戦を感じられる名設計。",
+        descEn:"A prestigious course that has hosted pro tournaments. Traditional yet challenging layout.",
+        accessJa:"石川ICより約20分。那覇空港から約65分。",
+        accessEn:"20 min from Ishikawa IC. 65 min from Naha Airport.",
+        nearbyJa:"観光：ブセナ海中公園、万国津梁館  宿泊：ザ・リッツカールトン沖縄",
+        nearbyEn:"Sightseeing: Busena Marine Park, Bankoku Shinryokan. Hotel: Ritz-Carlton Okinawa.",
+        officialUrl:"https://www.kise-cc.com/", imagePlaceholder:"https://picsum.photos/id/96/800/500" },
+      { id:4, rank:4, nameJa:"オーシャンキャッスルカントリークラブ", nameEn:"Ocean Castle Country Club",
+        descJa:"東シナ海と太平洋を望む絶景。中城城跡に隣接し、スリルと風格が漂うコース。",
+        descEn:"Panoramic views of East China Sea & Pacific. Adjacent to Nakagusuku Castle ruins.",
+        accessJa:"石川ICより約25分。那覇空港から50分。",
+        accessEn:"25 min from Ishikawa IC. 50 min from Naha Airport.",
+        nearbyJa:"観光：中城城跡、勝連城跡  宿泊：ホテル日航那覇",
+        nearbyEn:"Sightseeing: Nakagusuku Castle, Katsuren Castle. Hotel: Hotel Nikko Naha.",
+        officialUrl:"https://www.oceancastle.co.jp/", imagePlaceholder:"https://picsum.photos/id/128/800/500" },
+      { id:5, rank:5, nameJa:"ベルビーチゴルフクラブ", nameEn:"Bel Beach Golf Club",
+        descJa:"全ホールオーシャンビュー。フラットで初心者にも優しいが、上級者も楽しめるバランス設計。",
+        descEn:"Ocean view on every hole. Flat & friendly for beginners yet enjoyable for pros.",
+        accessJa:"石川ICより約10分。那覇空港から約55分。",
+        accessEn:"10 min from Ishikawa IC. 55 min from Naha Airport.",
+        nearbyJa:"観光：残波岬、体験王国むら咲むら  宿泊：残波岬ロイヤルホテル",
+        nearbyEn:"Sightseeing: Cape Zanpa, Murasakimura. Hotel: Zanpa Royal Hotel.",
+        officialUrl:"https://www.belbeach.co.jp/", imagePlaceholder:"https://picsum.photos/id/42/800/500" },
+      { id:6, rank:6, nameJa:"琉球ゴルフ倶楽部", nameEn:"Ryukyu Golf Club",
+        descJa:"国内女子ツアー『ダイキンオーキッドレディス』の舞台。戦略性と美しいフェアウェイ。",
+        descEn:"Stage of JLPGA Daikin Orchid Ladies. Strategic and immaculate fairways.",
+        accessJa:"石川ICより約18分。那覇空港から60分。",
+        accessEn:"18 min from Ishikawa IC. 60 min from Naha Airport.",
+        nearbyJa:"観光：ビオスの丘、東南植物楽園  宿泊：ホテルモントレ沖縄",
+        nearbyEn:"Sightseeing: Bios Hill, Southeast Botanical Gardens. Hotel: Hotel Monterey Okinawa.",
+        officialUrl:"https://www.ryukyu-gc.com/", imagePlaceholder:"https://picsum.photos/id/31/800/500" },
+      { id:7, rank:7, nameJa:"美らオーチャードゴルフ倶楽部", nameEn:"Chura Orchard Golf Club",
+        descJa:"元男子トーナメント開催コース。南国の香り漂う丘陵コースで戦略性抜群。",
+        descEn:"Former men's tournament course. Hilly layout with subtropical scent and strategy.",
+        accessJa:"石川ICより約12分。那覇空港から50分。",
+        accessEn:"12 min from Ishikawa IC. 50 min from Naha Airport.",
+        nearbyJa:"観光：名護市民ビーチ、オリオンハッピーパーク  宿泊：カヌチャリゾート",
+        nearbyEn:"Sightseeing: Nago Citizen Beach, Orion Happy Park. Hotel: Kanucha Resort.",
+        officialUrl:"https://www.churaorchard.com/", imagePlaceholder:"https://picsum.photos/id/26/800/500" },
+      { id:8, rank:8, nameJa:"パームヒルズゴルフリゾート", nameEn:"Palm Hills Golf Resort",
+        descJa:"標高130mの丘陵からの大パノラマ。リゾート感と本格派コースが融合。",
+        descEn:"Great panorama from 130m hill. Resort atmosphere meets serious golf.",
+        accessJa:"石川ICより約5分。那覇空港から45分。",
+        accessEn:"5 min from Ishikawa IC. 45 min from Naha Airport.",
+        nearbyJa:"観光：沖縄こどもの国、嘉手納基地展望台  宿泊：ロワジールホテル沖縄",
+        nearbyEn:"Sightseeing: Okinawa Zoo & Children's Land, Kadena Base. Hotel: Loisir Hotel Okinawa.",
+        officialUrl:"https://www.palmhills.co.jp/", imagePlaceholder:"https://picsum.photos/id/29/800/500" },
+      { id:9, rank:9, nameJa:"那覇ゴルフ倶楽部", nameEn:"Naha Golf Club",
+        descJa:"日本オープン開催の格式ある名門。那覇市近郊でアクセス良好。",
+        descEn:"Prestigious club that hosted Japan Open. Good access from Naha city.",
+        accessJa:"石川ICより約30分。那覇空港から25分。",
+        accessEn:"30 min from Ishikawa IC. 25 min from Naha Airport.",
+        nearbyJa:"観光：首里城、国際通り  宿泊：ダブルツリーbyヒルトン那覇",
+        nearbyEn:"Sightseeing: Shuri Castle, Kokusai Dori. Hotel: DoubleTree by Hilton Naha.",
+        officialUrl:"https://www.nahagolfclub.com/", imagePlaceholder:"https://picsum.photos/id/69/800/500" },
+      { id:10, rank:10, nameJa:"沖縄カントリークラブ", nameEn:"Okinawa Country Club",
+        descJa:"フラットで戦略性もあり、初心者から熟練者まで楽しめる人気コース。",
+        descEn:"Flat and strategic. Popular among all skill levels.",
+        accessJa:"石川ICより約15分。那覇空港から50分。",
+        accessEn:"15 min from Ishikawa IC. 50 min from Naha Airport.",
+        nearbyJa:"観光：普天間宮、コザゲート通り  宿泊：ホテルサン沖縄",
+        nearbyEn:"Sightseeing: Futenma Shrine, Koza Gate St. Hotel: Hotel Sun Okinawa.",
+        officialUrl:"https://www.okinawacc.com/", imagePlaceholder:"https://picsum.photos/id/48/800/500" },
+      { id:11, rank:11, nameJa:"宜野座カントリークラブ", nameEn:"Ginoza Country Club",
+        descJa:"近年予約ランキング急上昇。新しく設備が整い、コースメンテナンス良好。",
+        descEn:"Fast-rising in booking rankings. New facilities and well-maintained.",
+        accessJa:"石川ICより約8分。那覇空港から55分。",
+        accessEn:"8 min from Ishikawa IC. 55 min from Naha Airport.",
+        nearbyJa:"観光：宜野座博物館、漢那漁港  宿泊：グランディオーシャンリゾート",
+        nearbyEn:"Sightseeing: Ginoza Museum, Hanna Fishing Port. Hotel: Grand Ocean Resort.",
+        officialUrl:"https://ginoza-cc.com/", imagePlaceholder:"https://picsum.photos/id/91/800/500" },
+      { id:12, rank:12, nameJa:"シギラベイカントリークラブ", nameEn:"Shigira Bay Country Club",
+        descJa:"宮古島の透き通る海を望むリゾートコース。全ホール海景の贅沢なプレー体験。",
+        descEn:"Resort course overlooking crystal-clear sea of Miyakojima. Ocean views for all holes.",
+        accessJa:"宮古空港から車で約15分。石川ICからは飛行機での移動。",
+        accessEn:"15 min from Miyako Airport. Access by plane from Okinawa main island.",
+        nearbyJa:"観光：与那覇前浜ビーチ、伊良部大橋  宿泊：シギラベイサイドスイート",
+        nearbyEn:"Sightseeing: Yonaha Maehama Beach, Irabu Bridge. Hotel: Shigira Bayside Suite.",
+        officialUrl:"https://www.shigira.com/golf/", imagePlaceholder:"https://picsum.photos/id/106/800/500" }
+    ];
+
+    // 多言語辞書
+    const i18n = {
+      ja: {
+        title: "🏌️ 沖縄ゴルフリゾートガイド",
+        subtitle: "絶景コースとリゾートの調和",
+        sponsorTitle: "🏆 スポンサー",
+        sponsorText: "このエリアはスポンサーリンクです。",
+        visitSite: "公式サイトへ",
+        detailBack: "← 一覧に戻る",
+        officialHome: "公式ホームページを見る",
+        mapLabel: "📍 周辺エリア (石川ICを中心としたマップ)",
+        features: "アクセス・周辺情報"
+      },
+      en: {
+        title: "🏌️ Okinawa Golf Resort Guide",
+        subtitle: "Scenic Courses & Resort Harmony",
+        sponsorTitle: "🏆 Sponsors",
+        sponsorText: "This area is for sponsor links.",
+        visitSite: "Visit Site",
+        detailBack: "← Back to List",
+        officialHome: "Official Website",
+        mapLabel: "📍 Area Map (Centered on Ishikawa IC)",
+        features: "Access & Nearby Info"
+      }
+    };
+
+    let currentLang = 'ja';
+    let currentTheme = 'dark';
+    let showingDetail = false;
+    let currentCourse = null;
+    const mainDiv = document.getElementById('mainContent');
+
+    // テーマ設定
+    function setTheme(theme) {
+      document.body.classList.remove('dark', 'light');
+      document.body.classList.add(theme);
+      currentTheme = theme;
+      const btn = document.getElementById('themeBtn');
+      btn.innerHTML = theme === 'dark' ? '☀️ ライトモード' : '🌙 ダークモード';
+      localStorage.setItem('golf_theme', theme);
+    }
+
+    // 言語設定
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('page-title').innerText = i18n[lang].title;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) el.innerText = i18n[lang][key];
+      });
+      localStorage.setItem('golf_lang', lang);
+      renderCurrentView();
+    }
+
+    // スポンサーブロック
+    function renderSponsorBlock(position = 'top') {
+      return `
+        <div class="sponsor">
+          <img src="https://placehold.co/200x80/2c7a4d/white?text=Sponsor+Logo" alt="sponsor">
+          <span>${i18n[currentLang].sponsorText} ${position === 'top' ? '上部' : '下部'}</span>
+          <a href="#" target="_blank">${i18n[currentLang].visitSite} →</a>
+        </div>
+      `;
+    }
+
+    // メインページの下部マップ描画
+    function renderBottomMap() {
+      const container = document.getElementById('bottomMapContainer');
+      if (!container) return;
+      const lang = currentLang;
+      container.innerHTML = `
+        <div class="map-container bottom-map">
+          <iframe width="100%" height="100%" frameborder="0" style="border:0" 
+            src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=石川IC+沖縄&zoom=12&language=${lang}"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+      `;
+    }
+
+    // 一覧表示
+    function renderList() {
+      let html = renderSponsorBlock('top');
+      html += `<div class="golf-list">`;
+      courses.forEach(course => {
+        const name = currentLang === 'ja' ? course.nameJa : course.nameEn;
+        const featureShort = currentLang === 'ja' ? (course.descJa.slice(0, 70) + '...') : (course.descEn.slice(0, 70) + '...');
+        html += `
+          <div class="card" data-id="${course.id}">
+            <div class="card-header">
+              <span class="rank">#${course.rank}</span>
+              <span class="course-name">${escapeHtml(name)}</span>
+            </div>
+            <div class="feature">${escapeHtml(featureShort)}</div>
+            <div class="badge">🏝️ ${currentLang === 'ja' ? 'アクセス良好' : 'Good access'}</div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      html += renderSponsorBlock('bottom');
+      html += `<div id="bottomMapContainer" class="bottom-map"></div>`;
+      mainDiv.innerHTML = html;
+      
+      // カードクリック
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          const id = parseInt(card.getAttribute('data-id'));
+          const course = courses.find(c => c.id === id);
+          if (course) showDetail(course);
+        });
+      });
+      renderBottomMap();
+    }
+
+    // XSS 対策
+    function escapeHtml(str) {
+      return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+      });
+    }
+
+    // 詳細表示
+    function showDetail(course) {
+      showingDetail = true;
+      currentCourse = course;
+      const lang = currentLang;
+      const name = lang === 'ja' ? course.nameJa : course.nameEn;
+      const desc = lang === 'ja' ? course.descJa : course.descEn;
+      const access = lang === 'ja' ? course.accessJa : course.accessEn;
+      const nearby = lang === 'ja' ? course.nearbyJa : course.nearbyEn;
+      const hotelPart = lang === 'ja' ? (course.nearbyJa.split('宿泊：')[1] || 'リゾートホテル多数') : (course.nearbyEn.split('Hotels:')[1] || 'many resort hotels');
+      const sightPart = lang === 'ja' ? (course.nearbyJa.split('宿泊：')[0] || course.nearbyJa) : (course.nearbyEn.split('Hotels:')[0] || course.nearbyEn);
+      
+      const html = `
+        <div class="detail-view">
+          <button id="backToListBtn" class="btn-secondary back-btn">${i18n[lang].detailBack}</button>
+          <h2>${escapeHtml(name)}</h2>
+          <img class="detail-image" src="${course.imagePlaceholder}" alt="${escapeHtml(name)}" loading="lazy" onerror="this.src='https://placehold.co/800x400/2c7a4d/white?text=Golf+Course'">
+          <p><strong>📝 ${lang === 'ja' ? 'コース紹介' : 'Description'}</strong><br>${escapeHtml(desc)}</p>
+          <div style="margin-top: 1rem;">
+            <strong>🚗 ${lang === 'ja' ? 'アクセス' : 'Access'}</strong><br>${escapeHtml(access)}<br><br>
+            <strong>🏨 ${lang === 'ja' ? '周辺観光・宿泊' : 'Tourism & Hotels'}</strong><br>${escapeHtml(sightPart)}<br>${lang === 'ja' ? '宿泊' : 'Hotels'}: ${escapeHtml(hotelPart)}
+          </div>
+          <a href="${course.officialUrl}" target="_blank" rel="noopener noreferrer" class="official-link">${i18n[lang].officialHome} ↗</a>
+          <div class="map-container" id="detailMap"></div>
+        </div>
+      `;
+      mainDiv.innerHTML = html;
+      
+      document.getElementById('backToListBtn').addEventListener('click', () => {
+        showingDetail = false;
+        renderList();
+      });
+      
+      setTimeout(() => {
+        const mapDiv = document.getElementById('detailMap');
+        if (mapDiv) {
+          const lat = course.mapLat || 26.395;
+          const lng = course.mapLng || 127.745;
+          mapDiv.innerHTML = `<iframe width="100%" height="100%" frameborder="0" style="border:0" 
+            src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${lat},${lng}&zoom=13&language=${lang}"
+            allowfullscreen loading="lazy"></iframe>`;
+        }
+      }, 50);
+    }
+
+    function renderCurrentView() {
+      if (showingDetail && currentCourse) {
+        showDetail(currentCourse);
+      } else {
+        renderList();
+      }
+    }
+
+    // Service Worker 登録 (iOS対応)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').then(reg => {
+          console.log('SW registered:', reg);
+        }).catch(err => {
+          console.error('SW registration failed:', err);
+        });
+      });
+    }
+
+    // 初期化
+    function initApp() {
+      const savedTheme = localStorage.getItem('golf_theme');
+      if (savedTheme === 'light') setTheme('light');
+      else setTheme('dark');
+      
+      const savedLang = localStorage.getItem('golf_lang');
+      if (savedLang === 'en') setLanguage('en');
+      else setLanguage('ja');
+      
+      document.getElementById('langBtn').addEventListener('click', () => {
+        const newLang = currentLang === 'ja' ? 'en' : 'ja';
+        setLanguage(newLang);
+      });
+      document.getElementById('themeBtn').addEventListener('click', () => {
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+      });
+      
+      renderList();
+    }
+    
+    initApp();
+  </script>
+</body>
+</html>
